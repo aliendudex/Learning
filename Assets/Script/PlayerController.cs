@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private PlayerInputActions inputActions;
 
-    // ADD: Animator reference
+    //Animator reference
     private Animator animator;
 
     private void Awake()
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        // ADD: get Animator on start
+        //get Animator on start
         animator = GetComponent<Animator>();
     }
 
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>();
 
-        // ADD: update animator params for movement
+        //update animator params for movement
         if (moveInput != Vector2.zero)
         {
             animator.SetFloat("X", moveInput.x);
@@ -65,15 +65,15 @@ public class PlayerController : MonoBehaviour
     private void OnAttack(InputAction.CallbackContext context)
     {
         Debug.Log("Attack!");
-        // ADD: trigger attack animation
+        //trigger attack animation
         animator.SetBool("Attacking", true);
 
         // Lock into attack for 0.3 seconds
         Invoke(nameof(ResetAttack), 0.3f);
 
         // Example: flash red to simulate attack
-        GetComponent<SpriteRenderer>().color = Color.red;
-        Invoke(nameof(ResetColor), 0.2f);
+        //GetComponent<SpriteRenderer>().color = Color.red;
+        //Invoke(nameof(ResetColor), 0.2f);
     }
 
     private void ResetAttack()
@@ -101,12 +101,5 @@ public class PlayerController : MonoBehaviour
         if (pos.y > vertExtent) pos.y = -vertExtent;
         else if (pos.y < -vertExtent) pos.y = vertExtent;
         transform.position = pos;
- 
-        /*Vector3 pos = transform.position;
-        if (pos.x > 9) pos.x = -9;
-        else if (pos.x < -9) pos.x = 9;
-        if (pos.y > 5) pos.y = -5;
-        else if (pos.y < -5) pos.y = 5;
-        transform.position = pos;*/
     }
 }
